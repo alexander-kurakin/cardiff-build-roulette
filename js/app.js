@@ -31,7 +31,8 @@ async function loadParticipants() {
         ascendancy: record["Подкласс"],
         skill: record["Умение"],
         bossKillVerified: BOSS_COLUMNS.some(column => record[column] === "Да"),
-        rerollsUsed: parseRerollsUsed(record["Был реролл"]),
+        hadReroll: record["Был реролл"] === "Да",
+        rerollsUsed: parseRerollsUsed(record["Количество рероллов"]),
     }));
 }
 
@@ -59,12 +60,6 @@ function maxRerollsFor(participant) {
 
 function hasResult(participant) {
     return participant.ascendancy.length > 0 && participant.skill.length > 0;
-}
-
-function rerollStatusLabel(rerollsUsed) {
-    if (rerollsUsed <= 0) return "Нет";
-    if (rerollsUsed === 1) return "Да (1)";
-    return "Да (2)";
 }
 
 function renderParticipantsTable() {
@@ -97,12 +92,16 @@ function renderParticipantsTable() {
         skillCell.textContent = participant.skill || "—";
         row.appendChild(skillCell);
 
-        const rerollCell = document.createElement("td");
-        rerollCell.textContent = rerollStatusLabel(participant.rerollsUsed);
+        const hadRerollCell = document.createElement("td");
+        hadRerollCell.textContent = participant.hadReroll ? "Да" : "Нет";
+        row.appendChild(hadRerollCell);
+
+        const rerollsCountCell = document.createElement("td");
+        rerollsCountCell.textContent = participant.rerollsUsed;
         if (participant.rerollsUsed >= 2) {
-            rerollCell.classList.add("reroll-cell--double");
+            rerollsCountCell.classList.add("reroll-cell--double");
         }
-        row.appendChild(rerollCell);
+        row.appendChild(rerollsCountCell);
 
         row.addEventListener("click", () => {
             selectedIndex = index;
@@ -166,7 +165,10 @@ async function handleRoll(mode) {
     if (mode !== "skill") participant.ascendancy = result.ascendancy;
     if (mode !== "ascendancy") participant.skill = result.skill;
 
-    if (mode !== "full") participant.rerollsUsed += 1;
+    if (mode !== "full") {
+        participant.rerollsUsed += 1;
+        participant.hadReroll = true;
+    }
 
     renderParticipantsTable();
     renderControls();
