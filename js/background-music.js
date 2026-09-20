@@ -39,7 +39,6 @@ function createYoutubePlayer() {
 function updateMusicButton() {
     const button = document.getElementById("music-toggle-button");
     button.innerHTML = musicPlaying ? "Музыка<br>ВКЛ" : "Музыка<br>ВЫКЛ";
-    button.classList.toggle("music-toggle-button--playing", musicPlaying);
 }
 
 async function toggleMusic() {

@@ -236,7 +236,7 @@ th {
 .main-controls-row {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 32px;
 }
 
 .roll-button {
@@ -262,16 +262,11 @@ th {
     font-size: 11px;
     font-weight: bold;
     line-height: 1.4;
-    background: transparent;
-    color: var(--color-text-muted);
-    border: 1px solid var(--color-border);
+    background: var(--color-accent);
+    color: var(--color-background);
+    border: none;
     border-radius: 8px;
     cursor: pointer;
-}
-
-.music-toggle-button--playing {
-    color: var(--color-accent);
-    border-color: var(--color-accent);
 }
 
 .youtube-player {
