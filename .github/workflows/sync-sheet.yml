@@ -1,0 +1,54 @@
+name: Sync Google Sheet data
+
+on:
+  schedule:
+    - cron: "*/3 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  SHEET_ID: 1K3K5uXTLV_h08GZLjLcr0tBL6SHvYRsqarJ9PTwBixs
+  PARTICIPANTS_GID: 452550522
+  SKILLS_ASCENDANCIES_GID: 973364469
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch participants CSV
+        run: |
+          curl -sL --fail \
+            "https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${PARTICIPANTS_GID}" \
+            -o data/participants.csv
+
+      - name: Fetch skills and ascendancies CSV
+        run: |
+          curl -sL --fail \
+            "https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${SKILLS_ASCENDANCIES_GID}" \
+            -o data/skills-ascendancies.csv
+
+      - name: Sanity-check downloaded files
+        run: |
+          for file in data/participants.csv data/skills-ascendancies.csv; do
+            if [ ! -s "$file" ]; then
+              echo "$file is empty, aborting"
+              exit 1
+            fi
+            if grep -qi "<html" "$file"; then
+              echo "$file looks like an HTML error page, not CSV — aborting"
+              exit 1
+            fi
+          done
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/participants.csv data/skills-ascendancies.csv
+          git diff --cached --quiet || git commit -m "Sync data from Google Sheet"
+          git push
