@@ -5,6 +5,7 @@
     --color-text: #e8e9ec;
     --color-text-muted: #8a8f9c;
     --color-accent: #d4a94a;
+    --color-danger: #e05252;
 }
 
 * {
@@ -58,6 +59,11 @@ th {
 
 .participant-row {
     cursor: pointer;
+}
+
+.reroll-cell--double {
+    color: var(--color-danger);
+    font-weight: bold;
 }
 
 .participant-row--selected {

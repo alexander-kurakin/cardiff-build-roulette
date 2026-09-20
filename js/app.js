@@ -16,6 +16,11 @@ async function fetchCsvRows(path) {
     return parseCsv(text);
 }
 
+function parseRerollsUsed(rawValue) {
+    const parsed = parseInt(rawValue, 10);
+    return Number.isInteger(parsed) ? parsed : 0;
+}
+
 async function loadParticipants() {
     const rows = await fetchCsvRows(PARTICIPANTS_CSV_PATH);
     const records = csvRowsToObjects(rows);
@@ -26,7 +31,7 @@ async function loadParticipants() {
         ascendancy: record["Подкласс"],
         skill: record["Умение"],
         bossKillVerified: BOSS_COLUMNS.some(column => record[column] === "Да"),
-        rerollsUsed: 0,
+        rerollsUsed: parseRerollsUsed(record["Был реролл"]),
     }));
 }
 
@@ -54,6 +59,12 @@ function maxRerollsFor(participant) {
 
 function hasResult(participant) {
     return participant.ascendancy.length > 0 && participant.skill.length > 0;
+}
+
+function rerollStatusLabel(rerollsUsed) {
+    if (rerollsUsed <= 0) return "Нет";
+    if (rerollsUsed === 1) return "Да (1)";
+    return "Да (2)";
 }
 
 function renderParticipantsTable() {
@@ -85,6 +96,13 @@ function renderParticipantsTable() {
         const skillCell = document.createElement("td");
         skillCell.textContent = participant.skill || "—";
         row.appendChild(skillCell);
+
+        const rerollCell = document.createElement("td");
+        rerollCell.textContent = rerollStatusLabel(participant.rerollsUsed);
+        if (participant.rerollsUsed >= 2) {
+            rerollCell.classList.add("reroll-cell--double");
+        }
+        row.appendChild(rerollCell);
 
         row.addEventListener("click", () => {
             selectedIndex = index;
