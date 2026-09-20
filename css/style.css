@@ -194,6 +194,21 @@ th {
 
 .reel-icon--sprite {
     background-repeat: no-repeat;
+    filter: brightness(1.3) contrast(1.05);
+}
+
+.reel-icon--frame {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.reel-icon-img {
+    width: 185%;
+    height: 185%;
+    object-fit: contain;
 }
 
 .icon-placeholder {

@@ -16,11 +16,18 @@ function buildIconElement(name, iconData) {
     }
 
     if (typeof iconData === "string") {
+        // Gem icon PNGs have a lot of transparent padding around the actual art,
+        // so the image is zoomed in (via CSS) and clipped by this frame.
+        const frame = document.createElement("div");
+        frame.className = "reel-icon reel-icon--frame";
+
         const img = document.createElement("img");
-        img.className = "reel-icon";
+        img.className = "reel-icon-img";
         img.src = iconData;
         img.alt = name;
-        return img;
+        frame.appendChild(img);
+
+        return frame;
     }
 
     // Sprite-sheet icon (ascendancies): crop a region out of a shared atlas via background-position.
