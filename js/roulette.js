@@ -1,4 +1,4 @@
-const REEL_ITEM_HEIGHT = 120;
+const REEL_ITEM_HEIGHT = 150;
 const REEL_FILLER_COUNT = 24;
 const REEL_SPIN_DURATION_MS = 2600;
 
@@ -6,36 +6,20 @@ function pickRandom(pool) {
     return pool[Math.floor(Math.random() * pool.length)];
 }
 
-const ICON_DISPLAY_SIZE = 96;
-
-function buildIconElement(name, iconData) {
-    if (!iconData) {
+function buildIconElement(name, iconPath) {
+    if (!iconPath) {
         const placeholder = document.createElement("div");
         placeholder.className = "icon-placeholder";
         return placeholder;
     }
 
-    if (typeof iconData === "string") {
-        // Gem icon PNGs have uneven padding around the art (not always centered), so
-        // the icon is displayed whole (object-fit: contain, no cropping) in a bigger
-        // box instead of being zoomed in, which would risk cropping off-center art.
-        const img = document.createElement("img");
-        img.className = "reel-icon";
-        img.src = iconData;
-        img.alt = name;
-        return img;
-    }
-
-    // Sprite-sheet icon (ascendancies): crop a region out of a shared atlas via background-position.
-    const scale = ICON_DISPLAY_SIZE / iconData.h;
-    const sprite = document.createElement("div");
-    sprite.className = "reel-icon reel-icon--sprite";
-    sprite.style.backgroundImage = `url("${iconData.sheet}")`;
-    sprite.style.backgroundSize = `${iconData.sheetW * scale}px ${iconData.sheetH * scale}px`;
-    sprite.style.backgroundPosition = `-${iconData.x * scale}px -${iconData.y * scale}px`;
-    sprite.setAttribute("role", "img");
-    sprite.setAttribute("aria-label", name);
-    return sprite;
+    // Both skill and ascendancy icons are now plain local images extracted once
+    // from the game client (see decisions.md) — no cropping/sprite math needed.
+    const img = document.createElement("img");
+    img.className = "reel-icon";
+    img.src = iconPath;
+    img.alt = name;
+    return img;
 }
 
 function buildReelItem(name, iconUrl) {
