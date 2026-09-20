@@ -111,6 +111,7 @@ function runRoulette({ mode, playerName, currentAscendancy, currentSkill, ascend
     resultEl.classList.add("hidden");
     closeButton.classList.add("hidden");
     modal.classList.remove("hidden");
+    playSpinSound();
 
     const winnerAscendancy = mode === "skill" ? currentAscendancy : pickRandom(ascendancyPool);
     const winnerSkill = mode === "ascendancy" ? currentSkill : pickRandom(skillPool);
