@@ -1,4 +1,4 @@
-const REEL_ITEM_HEIGHT = 100;
+const REEL_ITEM_HEIGHT = 120;
 const REEL_FILLER_COUNT = 24;
 const REEL_SPIN_DURATION_MS = 2600;
 
@@ -6,7 +6,7 @@ function pickRandom(pool) {
     return pool[Math.floor(Math.random() * pool.length)];
 }
 
-const ICON_DISPLAY_SIZE = 72;
+const ICON_DISPLAY_SIZE = 96;
 
 function buildIconElement(name, iconData) {
     if (!iconData) {
@@ -16,18 +16,14 @@ function buildIconElement(name, iconData) {
     }
 
     if (typeof iconData === "string") {
-        // Gem icon PNGs have a lot of transparent padding around the actual art,
-        // so the image is zoomed in (via CSS) and clipped by this frame.
-        const frame = document.createElement("div");
-        frame.className = "reel-icon reel-icon--frame";
-
+        // Gem icon PNGs have uneven padding around the art (not always centered), so
+        // the icon is displayed whole (object-fit: contain, no cropping) in a bigger
+        // box instead of being zoomed in, which would risk cropping off-center art.
         const img = document.createElement("img");
-        img.className = "reel-icon-img";
+        img.className = "reel-icon";
         img.src = iconData;
         img.alt = name;
-        frame.appendChild(img);
-
-        return frame;
+        return img;
     }
 
     // Sprite-sheet icon (ascendancies): crop a region out of a shared atlas via background-position.
