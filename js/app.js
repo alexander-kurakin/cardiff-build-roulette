@@ -417,6 +417,7 @@ async function init() {
 
     bindControlButtons();
     bindExportButton();
+    bindMusicButton();
     renderCrowdPreview();
     renderParticipantsTable();
     renderControls();

@@ -10,11 +10,16 @@
     <main class="page">
         <h1>Cardiff Build Roulette</h1>
 
+        <div id="youtube-player" class="youtube-player"></div>
+
         <div id="crowd-preview" class="crowd-preview"></div>
 
         <section id="controls-panel" class="controls-panel">
             <div id="selected-player-name" class="selected-player-name">Выбери игрока в таблице</div>
-            <button id="roll-button" class="roll-button" disabled>КРУТИТЬ БАРАБАН</button>
+            <div class="main-controls-row">
+                <button id="roll-button" class="roll-button" disabled>КРУТИТЬ БАРАБАН</button>
+                <button id="music-toggle-button" class="music-toggle-button">Музыка<br>ВЫКЛ</button>
+            </div>
             <div class="reroll-buttons">
                 <button id="reroll-ascendancy-button" class="reroll-button hidden" disabled>крутить подкласс</button>
                 <button id="reroll-skill-button" class="reroll-button hidden" disabled>крутить умение</button>
@@ -61,6 +66,7 @@
 
     <script src="js/csv.js"></script>
     <script src="js/roulette.js"></script>
+    <script src="js/background-music.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
