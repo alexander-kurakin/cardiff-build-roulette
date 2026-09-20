@@ -62,12 +62,15 @@ function hasResult(participant) {
     return participant.ascendancy.length > 0 && participant.skill.length > 0;
 }
 
-const CROWD_HEIGHT_PX = 420;
-const CROWD_BALL_SIZE_PX = 44;
+const CROWD_HEIGHT_PX = 480;
+const CROWD_BALL_SIZE_PX = 66;
 const CROWD_BALL_RADIUS_PX = CROWD_BALL_SIZE_PX / 2;
 const CROWD_ZONE_MARGIN_PX = 10;
-const CROWD_MIN_SPACING_PX = CROWD_BALL_SIZE_PX + 6;
+const CROWD_STICK_FIGURE_HEIGHT_PX = 50;
+const CROWD_MIN_SPACING_PX = CROWD_BALL_SIZE_PX + 8;
 const CROWD_PLACEMENT_ATTEMPTS = 80;
+const CROWD_IDLE_DURATION_MIN_S = 10;
+const CROWD_IDLE_DURATION_MAX_S = 14;
 
 const CROWD_TOP_BOUNDS_Y = {
     min: CROWD_ZONE_MARGIN_PX,
@@ -75,7 +78,7 @@ const CROWD_TOP_BOUNDS_Y = {
 };
 const CROWD_BOTTOM_BOUNDS_Y = {
     min: CROWD_HEIGHT_PX / 2 + CROWD_ZONE_MARGIN_PX,
-    max: CROWD_HEIGHT_PX - CROWD_BALL_SIZE_PX - CROWD_ZONE_MARGIN_PX,
+    max: CROWD_HEIGHT_PX - CROWD_BALL_SIZE_PX - CROWD_STICK_FIGURE_HEIGHT_PX - CROWD_ZONE_MARGIN_PX,
 };
 
 function randomBetween(min, max) {
@@ -144,6 +147,29 @@ function fillCrowdBallIcons(iconsEl, participant) {
     }
 }
 
+function ensureCrowdStickFigure(inner) {
+    if (inner.querySelector(".crowd-stick-figure")) return;
+
+    const figure = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    figure.setAttribute("class", "crowd-stick-figure");
+    figure.setAttribute("viewBox", "0 0 24 40");
+    figure.innerHTML =
+        '<circle cx="12" cy="6" r="5"></circle>' +
+        '<line x1="12" y1="11" x2="12" y2="26"></line>' +
+        '<line x1="12" y1="15" x2="4" y2="22"></line>' +
+        '<line x1="12" y1="15" x2="20" y2="22"></line>' +
+        '<line x1="12" y1="26" x2="5" y2="38"></line>' +
+        '<line x1="12" y1="26" x2="19" y2="38"></line>';
+
+    inner.appendChild(figure);
+}
+
+function updateCrowdBallResult(ball, participant) {
+    const inner = ball.querySelector(".crowd-ball-inner");
+    fillCrowdBallIcons(inner.querySelector(".crowd-ball-icons"), participant);
+    ensureCrowdStickFigure(inner);
+}
+
 function createCrowdBall(participant, position) {
     const ball = document.createElement("div");
     ball.className = "crowd-ball";
@@ -151,7 +177,10 @@ function createCrowdBall(participant, position) {
 
     const inner = document.createElement("div");
     inner.className = "crowd-ball-inner";
-    inner.style.animationDelay = `${randomBetween(0, 2.5)}s`;
+
+    const idleDuration = randomBetween(CROWD_IDLE_DURATION_MIN_S, CROWD_IDLE_DURATION_MAX_S);
+    inner.style.animationDuration = `${idleDuration}s`;
+    inner.style.animationDelay = `-${randomBetween(0, idleDuration)}s`;
 
     const nameEl = document.createElement("span");
     nameEl.className = "crowd-ball-name";
@@ -168,7 +197,7 @@ function createCrowdBall(participant, position) {
 
     if (hasResult(participant)) {
         ball.classList.add("crowd-ball--active");
-        fillCrowdBallIcons(iconsEl, participant);
+        updateCrowdBallResult(ball, participant);
     }
 
     return ball;
@@ -209,14 +238,14 @@ function moveCrowdBallToBottom(participant) {
     ball.style.left = `${position.x}px`;
     ball.style.top = `${position.y}px`;
     ball.classList.add("crowd-ball--active");
-    fillCrowdBallIcons(ball.querySelector(".crowd-ball-icons"), participant);
+    updateCrowdBallResult(ball, participant);
 }
 
 function refreshCrowdBallIcons(participant) {
     const ball = findCrowdBall(participant.login);
     if (!ball) return;
 
-    fillCrowdBallIcons(ball.querySelector(".crowd-ball-icons"), participant);
+    updateCrowdBallResult(ball, participant);
 }
 
 function renderParticipantsTable() {
