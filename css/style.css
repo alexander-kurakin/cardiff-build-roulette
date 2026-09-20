@@ -55,3 +55,174 @@ th {
 .participant-row--assigned td:nth-child(4) {
     color: var(--color-accent);
 }
+
+.participant-row {
+    cursor: pointer;
+}
+
+.participant-row--selected {
+    outline: 2px solid var(--color-accent);
+    outline-offset: -2px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.controls-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.selected-player-name {
+    font-size: 18px;
+    color: var(--color-text-muted);
+}
+
+.roll-button {
+    font-size: 22px;
+    font-weight: bold;
+    padding: 16px 40px;
+    background: var(--color-accent);
+    color: var(--color-background);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.roll-button:disabled {
+    background: var(--color-border);
+    color: var(--color-text-muted);
+    cursor: not-allowed;
+}
+
+.reroll-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.reroll-button {
+    font-size: 13px;
+    padding: 8px 16px;
+    background: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.reroll-button:disabled {
+    color: var(--color-text-muted);
+    cursor: not-allowed;
+}
+
+.rerolls-info {
+    font-size: 12px;
+    color: var(--color-text-muted);
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.modal-content {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    min-width: 340px;
+}
+
+.reels {
+    display: flex;
+    gap: 16px;
+}
+
+.reel {
+    width: 260px;
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid var(--color-accent);
+    border-radius: 8px;
+    background: var(--color-background);
+}
+
+.reel--static {
+    border-color: var(--color-border);
+}
+
+.reel-strip {
+    display: flex;
+    flex-direction: column;
+}
+
+.reel-item {
+    height: 100px;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 14px;
+    font-size: 15px;
+}
+
+.reel-icon {
+    width: 72px;
+    height: 72px;
+    flex-shrink: 0;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+.reel-icon--sprite {
+    background-repeat: no-repeat;
+}
+
+.icon-placeholder {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--color-border);
+    flex-shrink: 0;
+}
+
+.roulette-result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.roulette-result-value {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--color-accent);
+}
+
+.roulette-close {
+    font-size: 16px;
+    padding: 10px 28px;
+    background: var(--color-accent);
+    color: var(--color-background);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}

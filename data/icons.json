@@ -162,24 +162,176 @@
     "Poisonous Concoction": "https://web.poecdn.com/image/Art/2DItems/Gems/PoisonousConcoction.png"
   },
   "ascendancies": {
-    "Scion": "https://cdn.poedb.tw/image/Art/2DArt/UIImages/Common/IconStrDexInt.webp",
-    "Slayer": "https://cdn.poedb.tw/image/Art/2DArt/UIImages/Common/IconStrDex_Slayer.webp",
-    "Gladiator": "https://cdn.poedb.tw/image/Art/2DArt/UIImages/Common/IconStrDex_Gladiator.webp",
-    "Champion": "https://cdn.poedb.tw/image/Art/2DArt/UIImages/Common/IconStrDex_Champion.webp",
-    "Juggernaut": "https://cdn.poedb.tw/image/Art/2DArt/UIImages/Common/IconStr_Juggernaut.webp",
-    "Berserker": "https://cdn.poedb.tw/image/Art/2DArt/UIImages/Common/IconStr_Berserker.webp",
-    "Chieftain": "https://cdn.poedb.tw/image/Art/2DArt/UIImages/Common/IconStr_Chieftain.webp",
-    "Inquisitor": "https://cdn.poedb.tw/image/Art/2DArt/UIImages/Common/IconStrInt_Inquisitor.webp",
-    "Hierophant": "https://cdn.poedb.tw/image/Art/2DArt/UIImages/Common/IconStrInt_Hierophant.webp",
-    "Guardian": "https://cdn.poedb.tw/image/Art/2DArt/UIImages/Common/IconStrInt_Guardian.webp",
-    "Necromancer": "https://cdn.poedb.tw/image/Art/2DArt/UIImages/Common/IconInt_Necromancer.webp",
-    "Occultist": "https://cdn.poedb.tw/image/Art/2DArt/UIImages/Common/IconInt_Occultist.webp",
-    "Elementalist": "https://cdn.poedb.tw/image/Art/2DArt/UIImages/Common/IconInt_Elementalist.webp",
-    "Assassin": "https://cdn.poedb.tw/image/Art/2DArt/UIImages/Common/IconDexInt_Assassin.webp",
-    "Saboteur": "https://cdn.poedb.tw/image/Art/2DArt/UIImages/Common/IconDexInt_Saboteur.webp",
-    "Trickster": "https://cdn.poedb.tw/image/Art/2DArt/UIImages/Common/IconDexInt_Trickster.webp",
-    "Deadeye": "https://cdn.poedb.tw/image/Art/2DArt/UIImages/Common/IconDex_Deadeye.webp",
-    "Raider": null,
-    "Pathfinder": "https://cdn.poedb.tw/image/Art/2DArt/UIImages/Common/IconDex_Pathfinder.webp"
+    "Scion": {
+      "sheet": "https://web.poecdn.com/image/passive-skill/ascendancy-4.webp?22bd887d",
+      "sheetW": 3480,
+      "sheetH": 3480,
+      "x": 0,
+      "y": 765,
+      "w": 765,
+      "h": 765
+    },
+    "Slayer": {
+      "sheet": "https://web.poecdn.com/image/passive-skill/ascendancy-4.webp?22bd887d",
+      "sheetW": 3480,
+      "sheetH": 3480,
+      "x": 1530,
+      "y": 0,
+      "w": 650,
+      "h": 650
+    },
+    "Gladiator": {
+      "sheet": "https://web.poecdn.com/image/passive-skill/ascendancy-4.webp?22bd887d",
+      "sheetW": 3480,
+      "sheetH": 3480,
+      "x": 1300,
+      "y": 2180,
+      "w": 650,
+      "h": 650
+    },
+    "Champion": {
+      "sheet": "https://web.poecdn.com/image/passive-skill/ascendancy-4.webp?22bd887d",
+      "sheetW": 3480,
+      "sheetH": 3480,
+      "x": 2830,
+      "y": 1300,
+      "w": 650,
+      "h": 650
+    },
+    "Juggernaut": {
+      "sheet": "https://web.poecdn.com/image/passive-skill/ascendancy-4.webp?22bd887d",
+      "sheetW": 3480,
+      "sheetH": 3480,
+      "x": 2180,
+      "y": 650,
+      "w": 650,
+      "h": 650
+    },
+    "Berserker": {
+      "sheet": "https://web.poecdn.com/image/passive-skill/ascendancy-4.webp?22bd887d",
+      "sheetW": 3480,
+      "sheetH": 3480,
+      "x": 2830,
+      "y": 1950,
+      "w": 650,
+      "h": 650
+    },
+    "Chieftain": {
+      "sheet": "https://web.poecdn.com/image/passive-skill/ascendancy-4.webp?22bd887d",
+      "sheetW": 3480,
+      "sheetH": 3480,
+      "x": 2830,
+      "y": 650,
+      "w": 650,
+      "h": 650
+    },
+    "Inquisitor": {
+      "sheet": "https://web.poecdn.com/image/passive-skill/ascendancy-4.webp?22bd887d",
+      "sheetW": 3480,
+      "sheetH": 3480,
+      "x": 2180,
+      "y": 1300,
+      "w": 650,
+      "h": 650
+    },
+    "Hierophant": {
+      "sheet": "https://web.poecdn.com/image/passive-skill/ascendancy-4.webp?22bd887d",
+      "sheetW": 3480,
+      "sheetH": 3480,
+      "x": 0,
+      "y": 2180,
+      "w": 650,
+      "h": 650
+    },
+    "Guardian": {
+      "sheet": "https://web.poecdn.com/image/passive-skill/ascendancy-4.webp?22bd887d",
+      "sheetW": 3480,
+      "sheetH": 3480,
+      "x": 650,
+      "y": 2180,
+      "w": 650,
+      "h": 650
+    },
+    "Necromancer": {
+      "sheet": "https://web.poecdn.com/image/passive-skill/ascendancy-4.webp?22bd887d",
+      "sheetW": 3480,
+      "sheetH": 3480,
+      "x": 2180,
+      "y": 0,
+      "w": 650,
+      "h": 650
+    },
+    "Occultist": {
+      "sheet": "https://web.poecdn.com/image/passive-skill/ascendancy-4.webp?22bd887d",
+      "sheetW": 3480,
+      "sheetH": 3480,
+      "x": 1300,
+      "y": 1530,
+      "w": 650,
+      "h": 650
+    },
+    "Elementalist": {
+      "sheet": "https://web.poecdn.com/image/passive-skill/ascendancy-4.webp?22bd887d",
+      "sheetW": 3480,
+      "sheetH": 3480,
+      "x": 1950,
+      "y": 2180,
+      "w": 650,
+      "h": 650
+    },
+    "Assassin": {
+      "sheet": "https://web.poecdn.com/image/passive-skill/ascendancy-4.webp?22bd887d",
+      "sheetW": 3480,
+      "sheetH": 3480,
+      "x": 0,
+      "y": 2830,
+      "w": 650,
+      "h": 650
+    },
+    "Saboteur": {
+      "sheet": "https://web.poecdn.com/image/passive-skill/ascendancy-4.webp?22bd887d",
+      "sheetW": 3480,
+      "sheetH": 3480,
+      "x": 1530,
+      "y": 650,
+      "w": 650,
+      "h": 650
+    },
+    "Trickster": {
+      "sheet": "https://web.poecdn.com/image/passive-skill/ascendancy-4.webp?22bd887d",
+      "sheetW": 3480,
+      "sheetH": 3480,
+      "x": 765,
+      "y": 765,
+      "w": 650,
+      "h": 650
+    },
+    "Deadeye": {
+      "sheet": "https://web.poecdn.com/image/passive-skill/ascendancy-4.webp?22bd887d",
+      "sheetW": 3480,
+      "sheetH": 3480,
+      "x": 2830,
+      "y": 0,
+      "w": 650,
+      "h": 650
+    },
+    "Raider": {
+      "sheet": "https://web.poecdn.com/image/passive-skill/ascendancy-4.webp?22bd887d",
+      "sheetW": 3480,
+      "sheetH": 3480,
+      "x": 0,
+      "y": 1530,
+      "w": 650,
+      "h": 650
+    },
+    "Pathfinder": {
+      "sheet": "https://web.poecdn.com/image/passive-skill/ascendancy-4.webp?22bd887d",
+      "sheetW": 3480,
+      "sheetH": 3480,
+      "x": 650,
+      "y": 1530,
+      "w": 650,
+      "h": 650
+    }
   }
 }

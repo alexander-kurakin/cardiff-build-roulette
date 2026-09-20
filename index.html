@@ -10,6 +10,16 @@
     <main class="page">
         <h1>Build Roulette</h1>
 
+        <section id="controls-panel" class="controls-panel">
+            <div id="selected-player-name" class="selected-player-name">Выбери игрока в таблице</div>
+            <button id="roll-button" class="roll-button" disabled>КРУТИТЬ БАРАБАН</button>
+            <div class="reroll-buttons">
+                <button id="reroll-ascendancy-button" class="reroll-button hidden" disabled>крутить восхождение</button>
+                <button id="reroll-skill-button" class="reroll-button hidden" disabled>крутить скилл</button>
+            </div>
+            <div id="rerolls-info" class="rerolls-info"></div>
+        </section>
+
         <table id="participants-table">
             <thead>
                 <tr>
@@ -23,7 +33,26 @@
         </table>
     </main>
 
+    <div id="roulette-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2 id="roulette-player-name"></h2>
+
+            <div class="reels">
+                <div id="reel-ascendancy" class="reel"><div class="reel-strip"></div></div>
+                <div id="reel-skill" class="reel"><div class="reel-strip"></div></div>
+            </div>
+
+            <div id="roulette-result" class="roulette-result hidden">
+                <div id="result-ascendancy" class="roulette-result-value"></div>
+                <div id="result-skill" class="roulette-result-value"></div>
+            </div>
+
+            <button id="roulette-close" class="roulette-close hidden">Закрыть</button>
+        </div>
+    </div>
+
     <script src="js/csv.js"></script>
+    <script src="js/roulette.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
