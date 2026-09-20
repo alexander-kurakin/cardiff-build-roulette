@@ -30,6 +30,7 @@ async function loadParticipants() {
         login: record["Логин"],
         ascendancy: record["Подкласс"],
         skill: record["Умение"],
+        slotGiven: record["Выдан слот"],
         bossKillVerified: BOSS_COLUMNS.some(column => record[column] === "Да"),
         hadReroll: record["Был реролл"] === "Да",
         rerollsUsed: parseRerollsUsed(record["Количество рероллов"]),
@@ -373,6 +374,35 @@ function bindControlButtons() {
     document.getElementById("reroll-skill-button").addEventListener("click", () => handleRoll("skill"));
 }
 
+const EXPORT_CSV_FILENAME = "build-roulette-result.csv";
+const EXPORT_CSV_HEADER = ["Логин", "Подкласс", "Умение", "Выдан слот", "Был реролл"];
+
+function exportResultsCsv() {
+    const rows = participants.map(participant => [
+        participant.login,
+        participant.ascendancy,
+        participant.skill,
+        participant.slotGiven,
+        participant.hadReroll ? "Да" : "Нет",
+    ]);
+
+    // Leading BOM so Excel opens the UTF-8 Cyrillic text correctly instead of guessing the wrong codepage.
+    const csvText = "﻿" + stringifyCsv([EXPORT_CSV_HEADER, ...rows]);
+    const blob = new Blob([csvText], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = EXPORT_CSV_FILENAME;
+    link.click();
+
+    URL.revokeObjectURL(url);
+}
+
+function bindExportButton() {
+    document.getElementById("export-csv-button").addEventListener("click", exportResultsCsv);
+}
+
 async function init() {
     const [loadedParticipants, pools, loadedIcons] = await Promise.all([
         loadParticipants(),
@@ -386,6 +416,7 @@ async function init() {
     icons = loadedIcons;
 
     bindControlButtons();
+    bindExportButton();
     renderCrowdPreview();
     renderParticipantsTable();
     renderControls();

@@ -46,6 +46,20 @@ function parseCsv(text) {
     return rows.filter(cells => cells.some(cell => cell.trim().length > 0));
 }
 
+function csvEscapeField(value) {
+    const stringValue = String(value ?? "");
+
+    if (/[",\n]/.test(stringValue)) {
+        return `"${stringValue.replace(/"/g, '""')}"`;
+    }
+
+    return stringValue;
+}
+
+function stringifyCsv(rows) {
+    return rows.map(row => row.map(csvEscapeField).join(",")).join("\r\n");
+}
+
 function csvRowsToObjects(rows) {
     const [header, ...dataRows] = rows;
 
